@@ -198,6 +198,7 @@ def ingest(
         if inplace is False returns a copy of adata_query with additional slots,
         otherwise adds to adata_query.
     """
+    print_green('Running ingest')
     anndata_version = pkg_version("anndata")
     if anndata_version < ANNDATA_MIN_VERSION:
         raise ValueError(
