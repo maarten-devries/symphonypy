@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 import warnings
 
-from typing import Iterable, List, Optional, Union
+from typing import Iterable, List, Optional, Union, Literal
 
 import numpy as np
 import pandas as pd
@@ -176,6 +176,7 @@ def ingest(
     neighbors_key: Optional[str] = None,
     inplace: bool = True,
     use_rep: str | None = None,
+    method: Optional[Literal['rapids']] = None,
     **kwargs,
 ):
     """
@@ -235,7 +236,7 @@ def ingest(
                     adata_ref.uns[neighbors_key]["params"]["use_rep"],
                 )
     print_green('running Ingest_sp...')
-    ing = Ingest_sp(adata_ref, neighbors_key, use_representation=use_rep)
+    ing = Ingest_sp(adata_ref, neighbors_key, use_representation=use_rep, method=method)
     print_green('ing.fitting...')
     ing.fit(adata_query)
 
