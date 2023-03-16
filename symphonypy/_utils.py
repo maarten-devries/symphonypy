@@ -16,6 +16,8 @@ from scanpy.tools._ingest import Ingest, _DimDict
 
 logger = logging.getLogger("symphonypy")
 
+def print_red(skk):
+    print('\033[91m {}\033[00m'.format(skk))    
 
 def _harmony_integrate_python(
     adata: AnnData,
@@ -354,17 +356,20 @@ class Ingest_sp(Ingest):
     def __init__(self, *args, **kwargs):
 
         self._force_use_rep = kwargs.pop("use_representation", None)
-
+        print_red('Initializing')
         super().__init__(*args, **kwargs)
 
     def fit(self, adata_new: AnnData):
+        print_red('fit')
         self._obs = pd.DataFrame(index=adata_new.obs.index)
+        print_red('_DimDict')
         self._obsm = _DimDict(adata_new.n_obs, axis=0)
 
         self._adata_new = adata_new
         self._obsm["rep"] = self._same_rep()
 
     def _same_rep(self):
+        print_red('same_rep')
         adata = self._adata_new
 
         if self._force_use_rep is not None:
@@ -391,7 +396,7 @@ class Ingest_sp(Ingest):
         return adata.X
 
     def _pca(self, n_pcs=None):
-
+        print_red('_pca')
         if self._pca_use_hvg:
             use_genes_list = self._adata_ref.var_names[
                 self._adata_ref.var["highly_variable"]
