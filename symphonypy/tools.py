@@ -27,7 +27,8 @@ from ._utils import (
 
 
 ANNDATA_MIN_VERSION = version.parse("0.7rc1")
-logger = logging.getLogger("symphonypy")
+logger = logging.getLogger("symphonypy").addHandler(logging.StreamHandler())
+logger.setLevel(logging.DEBUG)
 
 def print_green(skk):
     print('\033[92m {}\033[00m'.format(skk))
