@@ -237,7 +237,7 @@ def ingest(
                     adata_ref.uns[neighbors_key]["params"]["use_rep"],
                 )
     print_green('running Ingest_sp...')
-    ing = Ingest_sp(method=method, adata_ref, neighbors_key, use_representation=use_rep)
+    ing = Ingest_sp(method=method, adata=adata_ref, neighbors_key=neighbors_key, use_representation=use_rep)
     print_green('ing.fitting...')
     ing.fit(adata_query)
 
