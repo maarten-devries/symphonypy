@@ -15,6 +15,8 @@ from sklearn.cluster import KMeans
 from scanpy.tools._ingest import Ingest, _DimDict
 
 logger = logging.getLogger("symphonypy")
+logger.addHandler(logging.StreamHandler())
+logger.setLevel(logging.DEBUG)
 
 def print_red(skk):
     print('\033[91m {}\033[00m'.format(skk))    
