@@ -355,7 +355,7 @@ def _run_soft_kmeans(
 
 
 class Ingest_sp(Ingest):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, method, *args, **kwargs):
 
         self._force_use_rep = kwargs.pop("use_representation", None)
         print_red('Initializing')
