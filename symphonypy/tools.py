@@ -29,6 +29,8 @@ from ._utils import (
 ANNDATA_MIN_VERSION = version.parse("0.7rc1")
 logger = logging.getLogger("symphonypy")
 
+def print_green(skk):
+    print('\033[92m {}\033[00m'.format(skk))
 
 def per_cell_confidence(
     adata_query: AnnData,
@@ -230,14 +232,17 @@ def ingest(
                     "'%s' representation will be used for neighbors search in adata_query",
                     adata_ref.uns[neighbors_key]["params"]["use_rep"],
                 )
-
+    print_green('running Ingest_sp...')
     ing = Ingest_sp(adata_ref, neighbors_key, use_representation=use_rep)
+    print_green('ing.fitting...')
     ing.fit(adata_query)
 
     for method in embedding_method:
+        print_green('mapping embedding...')
         ing.map_embedding(method)
 
     if obs is not None:
+        print_green('ing.neighbors...')
         ing.neighbors(**kwargs)
         for i, col in enumerate(obs):
             ing.map_labels(col, labeling_method[i])
