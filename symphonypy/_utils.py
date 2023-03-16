@@ -359,7 +359,7 @@ class Ingest_sp(Ingest):
 
         self._force_use_rep = kwargs.pop("use_representation", None)
         print_red('Initializing')
-        super().__init__(*args, **kwargs)
+        super().__init__(method=method, *args, **kwargs)
 
     def fit(self, adata_new: AnnData):
         print_red('fit')
